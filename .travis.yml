@@ -1,0 +1,12 @@
+language: generic
+sudo: required
+services:
+    - docker
+
+#commands run before runni9ng test 
+before_install:
+    - docker build -t shubh/docker-react -f Dockerfile.dev .
+
+#script will contain all the commands that need to be run
+script:
+    - docker run -e CI=true shubh/docker-react npm run test -- --coverage    
